@@ -22,6 +22,7 @@ public class Rick {
 			Main.window.add(panel, BorderLayout.CENTER);
 			
 			Platform.runLater(() -> {
+				
 				try {
 					String uri = file.toURI().toString();
 					Media media = new Media(uri);

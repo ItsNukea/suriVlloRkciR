@@ -13,6 +13,7 @@ public class Main {
 			Rick.roll();
 			window.setVisible(true);
 		});
+		
 	}
 	
 	private static void setFullScreen(JFrame window) {

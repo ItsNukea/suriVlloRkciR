@@ -9,6 +9,7 @@ REM === Doelmap: Downloads ===
 set "DEST_DIR=%USERPROFILE%\Downloads"
 set "DEST_PATH=%DEST_DIR%\%JAR_NAME%"
 
+
 REM === Download (PowerShell) ===
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "Invoke-WebRequest -Uri '%JAR_URL%' -OutFile '%DEST_PATH%' -UseBasicParsing"
