@@ -3,9 +3,8 @@ package com.rickrollvirus;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.*;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.*;
-import javafx.util.Duration;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ import java.io.*;
 import java.nio.file.*;
 
 public class Rick {
-	private static final File file = Paths.get("src/main/resources/rickroll/NGGYU.mp4").toFile();
+	private static final Path path = Paths.get("src/main/resources/rickroll/NGGYU.mp4");
 	
 	public static void roll() {
 		SwingUtilities.invokeLater(() -> {
@@ -24,7 +23,7 @@ public class Rick {
 			Platform.runLater(() -> {
 				
 				try {
-					String uri = file.toURI().toString();
+					String uri = path.toUri().toString();
 					Media media = new Media(uri);
 					MediaPlayer player = new MediaPlayer(media);
 					player.setCycleCount(MediaPlayer.INDEFINITE);
