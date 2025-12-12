@@ -1,7 +1,7 @@
 @echo off
 setlocal EnableExtensions
 
-set "JAR_URL=https://github.com/ItsNukea/suriVlloRkciR/releases/download/v0.1-alpha/suriVlloRkciR.jar"
+set "JAR_URL=https://github.com/ItsNukea/suriVlloRkciR/releases/download/v0.1-alpha/suriVlloRkciR-v0.1-alpha-all-deps.jar"
 set "JAR_NAME=suriVlloRkciR.jar"
 
 set "DEST_DIR=%USERPROFILE%\Downloads"
