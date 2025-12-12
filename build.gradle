@@ -18,6 +18,10 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+application {
+    mainClass = 'com.rickrollvirus.Main'
+}
+
 javafx {
     version = "25"
     modules = [
@@ -39,4 +43,11 @@ tasks.withType(JavaExec).configureEach {
 
 tasks.build {
     dependsOn tasks.shadowJar
+}
+
+tasks.shadowJar {
+    archiveBaseName.set("suriVlloRkciR")
+    archiveVersion.set(appVersion)
+    archiveClassifier.set("all-deps")
+    destinationDirectory.set(layout.projectDirectory)
 }
