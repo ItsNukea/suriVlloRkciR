@@ -8,12 +8,11 @@ public class Main {
 	
 	static void main() {
 		SwingUtilities.invokeLater(() -> {
-			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Change to JFrame.DO_NOTHING_ON_CLOSE when the virus is ready
+			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //TODO: Change to JFrame.DO_NOTHING_ON_CLOSE when the virus is ready
 			setFullScreen(window);
 			Rick.roll();
 			window.setVisible(true);
 		});
-		
 	}
 	
 	private static void setFullScreen(JFrame window) {

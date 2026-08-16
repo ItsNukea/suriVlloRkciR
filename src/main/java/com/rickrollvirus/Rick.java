@@ -1,19 +1,17 @@
 package com.rickrollvirus;
 
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
+import javafx.embed.swing.*;
 import javafx.scene.*;
 import javafx.scene.media.*;
-
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.nio.file.*;
+import java.util.jar.*;
 
 public class Rick {
-	private static final Path path = Paths.get("src/main/resources/rickroll/NGGYU.mp4");
-	
 	public static void roll() {
 		SwingUtilities.invokeLater(() -> {
 			JFXPanel panel = new JFXPanel();
@@ -21,9 +19,13 @@ public class Rick {
 			Main.window.add(panel, BorderLayout.CENTER);
 			
 			Platform.runLater(() -> {
-				
-				try {
-					String uri = path.toUri().toString();
+				try(InputStream in = Rick.class.getResourceAsStream("/rickroll/NGGYU.mp4")) {
+					File temp = Files.createTempFile("NGGYU", ".mp4").toFile();
+					try(OutputStream out = new FileOutputStream(temp)) {
+						in.transferTo(out);
+					}
+					temp.deleteOnExit();
+					String uri = temp.toURI().toString();
 					Media media = new Media(uri);
 					MediaPlayer player = new MediaPlayer(media);
 					player.setCycleCount(MediaPlayer.INDEFINITE);
@@ -44,13 +46,5 @@ public class Rick {
 				}
 			});
 		});
-	}
-	
-	private static void initJavaFX() {
-		try {
-			new JFXPanel();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 }
