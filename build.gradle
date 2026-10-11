@@ -1,9 +1,12 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.gradleup.shadow' version '8.3.5'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
 }
 
 group = 'com'
-version = 'v1.0-alpha'
+version = '1'
 
 java {
     toolchain {
@@ -11,10 +14,50 @@ java {
     }
 }
 
+javafx {
+    version = '25'
+    modules = [
+            'javafx.controls',
+            'javafx.media',
+            'javafx.swing'
+    ]
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    implementation 'net.java.dev.jna:jna:5.14.0'
+    implementation 'net.java.dev.jna:jna-platform:5.14.0'}
 
+application {
+    mainClass = "com.rickrollvirus.Main"
+}
+
+shadowJar {
+    archiveBaseName.set("suriVlloRckiR")
+    archiveClassifier.set("")
+    archiveVersion.set("v1.0")
+}
+
+tasks.register('createExecutable', Exec) {
+    dependsOn tasks.named('shadowJar')
+
+    def jarFile = tasks.named('shadowJar').get().archiveFile.get().asFile
+    def outputDir = layout.buildDirectory.dir('jpackage').get().asFile
+
+    doFirst {
+        outputDir.mkdirs()
+    }
+
+    commandLine 'jpackage',
+            '--type', 'app-image',
+            '--name', 'suriVlloRkciR',
+            '--input', jarFile.parent,
+            '--main-jar', jarFile.name,
+            '--main-class', 'com.rickrollvirus.Main',
+            '--app-version', project.version.toString(),
+            '--dest', outputDir.absolutePath,
+            '--vendor', 'ItsNukea'
 }
